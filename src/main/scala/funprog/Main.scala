@@ -1,6 +1,6 @@
 package fr.esgi.al.funprog
 
-import progfun.{Lawnmower, Orientation}
+import funprog.{Lawnmower, Orientation}
 
 object Main extends App {
   println("Ici le programme principal")
@@ -10,5 +10,5 @@ object Main extends App {
 //
 //   println(s"tmp: $tmp, tmp2: $tmp2")
 
-  new Lawnmower(0, 0, Orientation("N"))
+  println(new Lawnmower(0, 0, Orientation.N))
 }

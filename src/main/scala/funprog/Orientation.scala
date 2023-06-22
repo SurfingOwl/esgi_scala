@@ -1,4 +1,4 @@
-package progfun
+package funprog
 
 object Orientation extends Enumeration {
   type orientation = Value
