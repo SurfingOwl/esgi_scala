@@ -1,15 +1,7 @@
 package fr.esgi.al.funprog
 
-import funprog.{Case, Lawn, Lawnmower, Orientation}
+import funprog.{Case, Initializer, Lawn, Lawnmower, Orientation}
 
-object Main extends App {
-  println("Ici le programme principal")
-//   Le code suivant ne compilera pas.
-//   var tmp = null;
-//   var tmp2 = if (tmp == 1) "yes" else 1
-//
-//   println(s"tmp: $tmp, tmp2: $tmp2")
-
-  private val lawnmower = new Lawnmower(0, 0, Orientation.N)
+object Main extends App with Initializer {
 
 }
