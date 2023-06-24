@@ -1,6 +1,6 @@
 package fr.esgi.al.funprog
 
-import funprog.{Lawnmower, Orientation}
+import funprog.{Case, Lawn, Lawnmower, Orientation}
 
 object Main extends App {
   println("Ici le programme principal")
@@ -10,5 +10,6 @@ object Main extends App {
 //
 //   println(s"tmp: $tmp, tmp2: $tmp2")
 
-  println(new Lawnmower(0, 0, Orientation.N))
+  private val lawnmower = new Lawnmower(0, 0, Orientation.N)
+
 }
