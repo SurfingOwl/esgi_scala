@@ -1,20 +1,26 @@
 package funprog
 
 import better.files._
+import com.fasterxml.jackson.databind.{ObjectMapper, SerializationFeature}
+
 object FileParser {
 
+  private val mapper =
+    new ObjectMapper().configure(SerializationFeature.INDENT_OUTPUT, true)
   private val inputFile: File = File(ConfigLoader.inputFileUrl)
-  val inputFileAsList = inputFile.lines.toList
+  val inputFileAsList: List[String] = inputFile.lines.toList
 
-  val jsonOutputFile = File(ConfigLoader.jsonOutputFile)
-  val csvOutputFile = File(ConfigLoader.csvOutputFile)
+  private val jsonOutputFile = File(ConfigLoader.jsonOutputFile)
+//  val csvOutputFile = File(ConfigLoader.csvOutputFile)
 
-  def writeToJson(lawn: Lawn): Unit = {
-
+  def writeToJson(output: Lawn): File = {
+    val file = jsonOutputFile.createFileIfNotExists()
+    val outputAsJson = mapper.writeValueAsString(output)
+    file.appendLine(outputAsJson)
   }
 
-  def writeToCsv(lawn: Lawn): Unit = {
+//  def writeToCsv(output: FileOutput): Unit = {
 
-  }
+//  }
 
 }
