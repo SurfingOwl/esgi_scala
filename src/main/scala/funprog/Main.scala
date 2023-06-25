@@ -46,9 +46,9 @@ object Main extends App with LawnmowerInstructionInterpretor {
     }
   }
 
-  private val lawn = dimensions match {
-    case Some(dim) => Some(Lawn(dim, mowersState))
-    case None => None
+  private val lawn: Lawn = dimensions match {
+    case Some(dim) => Lawn(dim, mowersState)
+    case None => Lawn(Dimensions(0, 0), Nil)
   }
-  println(lawn)
+  val file = FileParser.writeToJson(lawn)
 }

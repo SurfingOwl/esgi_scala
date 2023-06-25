@@ -9,14 +9,10 @@ trait LawnmowerInstructionInterpretor {
       instruction match {
         case "A" =>
           lawnmower.orientation match {
-            case N =>
-              Lawnmower(lawnmower.x, lawnmower.y + 1, lawnmower.orientation)
-            case E =>
-              Lawnmower(lawnmower.x - 1, lawnmower.y, lawnmower.orientation)
-            case W =>
-              Lawnmower(lawnmower.x + 1, lawnmower.y, lawnmower.orientation)
-            case S =>
-              Lawnmower(lawnmower.x, lawnmower.y - 1, lawnmower.orientation)
+            case N => Lawnmower(lawnmower.x, lawnmower.y + 1, lawnmower.orientation)
+            case E => Lawnmower(lawnmower.x - 1, lawnmower.y, lawnmower.orientation)
+            case W => Lawnmower(lawnmower.x + 1, lawnmower.y, lawnmower.orientation)
+            case S => Lawnmower(lawnmower.x, lawnmower.y - 1, lawnmower.orientation)
           }
         case "D" =>
           lawnmower.orientation match {
