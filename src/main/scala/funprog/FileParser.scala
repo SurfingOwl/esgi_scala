@@ -6,6 +6,7 @@ import play.api.libs.json.Json
 object FileParser {
 
   implicit val dimensionsWrites: Writes[Dimensions] = Json.writes[Dimensions]
+  implicit val pointWrites: Writes[Point] = Json.writes[Point]
   implicit val lawnmowerWrites: Writes[Lawnmower] = Json.writes[Lawnmower]
   implicit val mowerStateWrites: Writes[MowerState] = Json.writes[MowerState]
   implicit val lawnWrites: Writes[Lawn] = Json.writes[Lawn]

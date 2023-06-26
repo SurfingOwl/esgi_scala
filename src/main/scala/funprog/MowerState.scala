@@ -1,3 +1,3 @@
 package funprog
 
-case class MowerState(startingPostion: Lawnmower, endingPosition: Lawnmower, instructions: List[String])
+case class MowerState(debut: Lawnmower, instructions: List[String], fin: Lawnmower)

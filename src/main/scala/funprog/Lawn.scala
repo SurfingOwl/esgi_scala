@@ -1,3 +1,3 @@
 package funprog
 
-case class Lawn(dimensions: Dimensions, lawnmower: List[MowerState])
+case class Lawn(limite: Dimensions, tondeuses: List[MowerState])

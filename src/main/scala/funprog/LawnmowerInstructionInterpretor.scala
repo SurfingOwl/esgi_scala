@@ -8,25 +8,25 @@ trait LawnmowerInstructionInterpretor {
     instructions.foldLeft(lawnmower) { (lawnmower, instruction) =>
       instruction match {
         case "A" =>
-          lawnmower.orientation match {
-            case N => Lawnmower(lawnmower.x, lawnmower.y + 1, lawnmower.orientation)
-            case E => Lawnmower(lawnmower.x - 1, lawnmower.y, lawnmower.orientation)
-            case W => Lawnmower(lawnmower.x + 1, lawnmower.y, lawnmower.orientation)
-            case S => Lawnmower(lawnmower.x, lawnmower.y - 1, lawnmower.orientation)
+          lawnmower.direction match {
+            case N => Lawnmower(Point(lawnmower.point.x, lawnmower.point.y + 1), lawnmower.direction)
+            case E => Lawnmower(Point(lawnmower.point.x + 1, lawnmower.point.y), lawnmower.direction)
+            case W => Lawnmower(Point(lawnmower.point.x - 1, lawnmower.point.y), lawnmower.direction)
+            case S => Lawnmower(Point(lawnmower.point.x, lawnmower.point.y - 1), lawnmower.direction)
           }
         case "D" =>
-          lawnmower.orientation match {
-            case N => Lawnmower(lawnmower.x, lawnmower.y, E)
-            case E => Lawnmower(lawnmower.x, lawnmower.y, S)
-            case W => Lawnmower(lawnmower.x, lawnmower.y, N)
-            case S => Lawnmower(lawnmower.x, lawnmower.y, W)
+          lawnmower.direction match {
+            case N => Lawnmower(lawnmower.point, E)
+            case E => Lawnmower(lawnmower.point, S)
+            case W => Lawnmower(lawnmower.point, N)
+            case S => Lawnmower(lawnmower.point, W)
           }
         case "G" =>
-          lawnmower.orientation match {
-            case N => Lawnmower(lawnmower.x, lawnmower.y, W)
-            case E => Lawnmower(lawnmower.x, lawnmower.y, N)
-            case W => Lawnmower(lawnmower.x, lawnmower.y, S)
-            case S => Lawnmower(lawnmower.x, lawnmower.y, E)
+          lawnmower.direction match {
+            case N => Lawnmower(lawnmower.point, W)
+            case E => Lawnmower(lawnmower.point, N)
+            case W => Lawnmower(lawnmower.point, S)
+            case S => Lawnmower(lawnmower.point, E)
           }
       }
     }

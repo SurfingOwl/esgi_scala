@@ -1,3 +1,3 @@
 package funprog
 
-case class Dimensions(xSize: Int, ySize: Int)
+case class Dimensions(x: Int, y: Int)

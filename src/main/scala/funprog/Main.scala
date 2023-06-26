@@ -1,23 +1,21 @@
 package fr.esgi.al.funprog
 
-import funprog.{Dimensions, FileParser, Lawn, Lawnmower, LawnmowerInstructionInterpretor, MowerState, Orientation}
+import funprog.{Dimensions, FileParser, Lawn, Lawnmower, LawnmowerInstructionInterpretor, MowerState, Orientation, Point}
 
 object Main extends App with LawnmowerInstructionInterpretor {
 
   private val instructions: List[String] = FileParser.inputFileAsList
 
-  private val dimensions = instructions.headOption match {
-    case Some(line) =>
-      line.split(" ").map(_.toInt).toList match {
-        case x :: y :: Nil => Some(Dimensions(x, y))
-        case _ => None
-      }
-    case None => None
+  private val dimensions: Option[Dimensions] = instructions.headOption.flatMap { line =>
+    line.split(" ").map(_.toInt).toList match {
+      case x :: y :: Nil => Some(Dimensions(x, y))
+      case _ => None
+    }
   }
 
-  private val lawnmowers = instructions.drop(1).grouped(2).toList
+  private val lawnmowers: List[List[String]] = instructions.drop(1).grouped(2).toList
 
-  private val mowersState = lawnmowers.flatMap { params =>
+  private val mowersState: List[MowerState] = lawnmowers.flatMap { params =>
     params match {
       case initParams :: instructions :: Nil =>
         initParams.split(" ").toList match {
@@ -34,10 +32,10 @@ object Main extends App with LawnmowerInstructionInterpretor {
 
             (xOpt, yOpt, orientationOpt) match {
               case (Some(x), Some(y), Some(orientation)) =>
-                val startingPosition = Lawnmower(x, y, orientation)
+                val startingPosition = Lawnmower(Point(x, y), orientation)
                 val mowerInstructions = instructions.trim.split("").toList
                 val endingPosition = calculateLawnmowerNewCoordinate(startingPosition, mowerInstructions)
-                Some(MowerState(startingPosition, endingPosition, mowerInstructions))
+                Some(MowerState(startingPosition, mowerInstructions, endingPosition))
               case _ => None
             }
           case _ => None
@@ -50,5 +48,6 @@ object Main extends App with LawnmowerInstructionInterpretor {
     case Some(dim) => Lawn(dim, mowersState)
     case None => Lawn(Dimensions(0, 0), Nil)
   }
+
   val file = FileParser.writeToJson(lawn)
 }
