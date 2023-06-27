@@ -50,4 +50,5 @@ object Main extends App with LawnmowerInstructionInterpretor {
   }
 
   val file = FileParser.writeToJson(lawn)
+  FileParser.writeToCsv(lawn)
 }

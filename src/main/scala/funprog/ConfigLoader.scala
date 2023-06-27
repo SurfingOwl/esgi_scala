@@ -8,5 +8,5 @@ object ConfigLoader {
 
   val inputFileUrl: String = config.getString("application.input-file")
   val jsonOutputFile: String = config.getString("application.output-json-file")
-//  val csvOutputFile: String = config.getString("application.output-csv-file")
+  val csvOutputFile: String = config.getString("application.output-csv-file")
 }
