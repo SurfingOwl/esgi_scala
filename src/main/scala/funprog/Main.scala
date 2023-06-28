@@ -1,10 +1,11 @@
 package fr.esgi.al.funprog
 
-import funprog.{Dimensions, FileParser, Lawn, Lawnmower, LawnmowerInstructionInterpretor, MowerState, Orientation, Point}
+import better.files.File
+import funprog.{ConfigLoader, Dimensions, FileParser, Lawn, Lawnmower, LawnmowerInstructionInterpreter, MowerState, Orientation, Point}
 
-object Main extends App with LawnmowerInstructionInterpretor {
+object Main extends App with LawnmowerInstructionInterpreter {
 
-  private val instructions: List[String] = FileParser.inputFileAsList
+  private val instructions: List[String] = FileParser.inputFileAsList(File(ConfigLoader.inputFileUrl))
 
   private val dimensions: Option[Dimensions] = instructions.headOption.flatMap { line =>
     line.split(" ").map(_.toInt).toList match {
@@ -49,6 +50,6 @@ object Main extends App with LawnmowerInstructionInterpretor {
     case None => Lawn(Dimensions(0, 0), Nil)
   }
 
-  val file = FileParser.writeToJson(lawn)
-  FileParser.writeToCsv(lawn)
+  val json = FileParser.writeToJson(lawn, File(ConfigLoader.jsonOutputFile))
+  val csv = FileParser.writeToCsv(lawn, File(ConfigLoader.csvOutputFile))
 }

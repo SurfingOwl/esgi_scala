@@ -2,7 +2,7 @@ package funprog
 
 import funprog.Orientation._
 
-trait LawnmowerInstructionInterpretor {
+trait LawnmowerInstructionInterpreter {
 
   def calculateLawnmowerNewCoordinate(lawnmower: Lawnmower, instructions: List[String]): Lawnmower = {
     instructions.foldLeft(lawnmower) { (lawnmower, instruction) =>

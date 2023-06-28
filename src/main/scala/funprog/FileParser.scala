@@ -12,20 +12,16 @@ object FileParser {
   implicit val mowerStateWrites: Writes[MowerState] = Json.writes[MowerState]
   implicit val lawnWrites: Writes[Lawn] = Json.writes[Lawn]
 
-  private val inputFile: File = File(ConfigLoader.inputFileUrl)
-  val inputFileAsList: List[String] = inputFile.lines.toList
+  def inputFileAsList(inputFile: File): List[String] = inputFile.lines.toList
 
-  private val jsonOutputFile = File(ConfigLoader.jsonOutputFile)
-  private val csvOutputFile = File(ConfigLoader.csvOutputFile)
-
-  def writeToJson(output: Lawn): File = {
-    val file = jsonOutputFile.createFileIfNotExists()
+  def writeToJson(output: Lawn, outputFile: File): File = {
+    val file = outputFile.createFileIfNotExists();
     val outputAsJson = Json.stringify(Json.toJson(output))
     file.appendLine(outputAsJson)
   }
 
-  def writeToCsv(output: Lawn): Unit = {
-    val file = csvOutputFile.createFileIfNotExists()
+  def writeToCsv(output: Lawn, fileOutput: File): File = {
+    val file = fileOutput.createFileIfNotExists()
     file.appendLine(
       "numéro;début_x;début_y;début_direction;fin_x;fin_y;fin_direction;instructions"
     )
@@ -46,6 +42,7 @@ object FileParser {
           )
         )
     }
+    file
   }
 
 }
